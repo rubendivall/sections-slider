@@ -4,6 +4,9 @@
   var $slides = $(selector);
 
   var currentSlide = 0;
+  if ($('.active_section').length > 0) {
+    currentSlide = $('.active_section').data('panel');
+  }
   var isAnimating = false;
 
   var stopAnimation = function() {
@@ -50,6 +53,8 @@
           1000,
           stopAnimation
         );
+        selector.removeClass('active_section');
+        $slide.addClass('active_section');
       } else {
         // back
         if (currentSlide - 1 < 0) return;
@@ -66,6 +71,8 @@
           1000,
           stopAnimation
         );
+        selector.removeClass('active_section');
+        $slide.addClass('active_section');
       }
     },
     { passive: false }
